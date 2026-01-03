@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/static.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Gerenciador de Tarefas</title>
+</head>
+<body>
+    <header>
+        <div class="headerInterno">
+            <img src="{{ url_for('static', filename='img/check-svgrepo-com.svg') }}" alt="" class="iconQuadradoVerificado">
+            <div class="info">
+                <h1 class="minhasTarefas">
+                    Minhas Tarefas
+                </h1>
+                <p class="infoTarefas">
+                    {{ quantidade.qnt_pendentes }} pendente(s) • {{ quantidade.qnt_concluidas }} concluida(s)
+                </p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <form action="{{ url_for('adicionar_tarefa') }}" method="post" >
+            <div class="formSuperior">
+                <input type="text" name="tarefa" id="tarefa" placeholder="O que você precisa fazer?" required>
+                <textarea name="descricao" id="descricao" rows="5" placeholder="Adicione uma descrição (opcional)"></textarea>
+            </div>
+            <div class="formInferior">
+                <button>
+                    <img src="{{ url_for('static', filename='img/add-svgrepo-com.svg') }}" alt="" class="iconMais">
+                    <p class="adicionar">
+                        Adicionar
+                    </p>
+                </button>
+            </div>
+        </form>
+        <div class="abas">
+            {% if id == 1 %}
+            <a href="/" class="aba01">
+                <p class="todas">
+                    Todas
+                </p>
+                <p class="qntTarefaTodas">{{ quantidade.qnt_todas }}</p>
+            </a>
+            <a href="{{ url_for('escolha_aba', id=1) }}" class="aba00">
+                <p class="pendentes">
+                    Pendentes
+                </p>
+                <p class="qntTarefaPendentes">{{ quantidade.qnt_pendentes }}</p>
+            </a>
+            <a href="{{ url_for('escolha_aba', id=2) }}" class="aba02">
+                <p class="concluidas">
+                    Concluídas
+                </p>
+                <p class="qntTarefaConcluidas">{{ quantidade.qnt_concluidas }}</p>
+            </a>
+            {% elif id == 2 %}
+            <a href="/" class="aba01">
+                <p class="todas">
+                    Todas
+                </p>
+                <p class="qntTarefaTodas">{{ quantidade.qnt_todas }}</p>
+            </a>
+            <a href="{{ url_for('escolha_aba', id=1) }}" class="aba02">
+                <p class="pendentes">
+                    Pendentes
+                </p>
+                <p class="qntTarefaPendentes">{{ quantidade.qnt_pendentes }}</p>
+            </a>
+            <a href="{{ url_for('escolha_aba', id=2) }}" class="aba00">
+                <p class="concluidas">
+                    Concluídas
+                </p>
+                <p class="qntTarefaConcluidas">{{ quantidade.qnt_concluidas }}</p>
+            </a>
+            {% else %} 
+            <a href="/" class="aba00">
+                <p class="todas">
+                    Todas
+                </p>
+                <p class="qntTarefaTodas">{{ quantidade.qnt_todas }}</p>
+            </a>
+            <a href="{{ url_for('escolha_aba', id=1) }}" class="aba01">
+                <p class="pendentes">
+                    Pendentes
+                </p>
+                <p class="qntTarefaPendentes">{{ quantidade.qnt_pendentes }}</p>
+            </a>
+            <a href="{{ url_for('escolha_aba', id=2) }}" class="aba02">
+                <p class="concluidas">
+                    Concluídas
+                </p>
+                <p class="qntTarefaConcluidas">{{ quantidade.qnt_concluidas }}</p>
+            </a>
+            {% endif %}
+        </div>
+
+        {% if id == 1 %}
+        <div class="listaTarefas">
+            {% if quantidade.qnt_pendentes > 0 %}
+                {% for tarefa in tarefas %}
+                    {% if tarefa.status == False %}
+                    <form class="cardTarefa" method="post" action="{{ url_for('atualizar_status', id_tarefa=tarefa.id) }}">
+                        <input type="checkbox" name="feito" id="tarefa-{{ tarefa.id }}" class="inputBox" onchange="this.form.submit()" onchange="this.form.submit()">
+                        <div class="conteudoCard">
+                            <label for="tarefa-{{ tarefa.id }}" class="nomeTarefa">
+                                {{ tarefa.tarefa }}
+                            </label>
+                            <p class="descricaoTarefa">
+                                {{ tarefa.descricao }}
+                            </p>            
+                            <p class="statusTarefaPendente">
+                                Pendente
+                            </p>
+                        </div>
+                    </form>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+            <div class="semTarefas">
+                <img src="{{ url_for('static',  filename='img/circle-svgrepo-com.svg') }}" alt="" class="iconCirculo">
+                <p class="msgNenhumaTarefa">Nenhuma tarefa pendente</p>
+                <p class="msgTarefas">
+                    Você concluiu todas as suas tarefas!
+                </p>
+            </div>
+            {% endif %}
+        </div>
+        {% elif id == 2 %}
+        <div class="listaTarefas">
+            {% if quantidade.qnt_concluidas > 0 %}
+                {% for tarefa in tarefas %}
+                    {% if tarefa.status == True %}
+                    <form class="cardTarefa" method="post" action="{{ url_for('atualizar_status', id_tarefa=tarefa.id) }}">
+                        <input type="checkbox" name="feito" id="tarefa-{{ tarefa.id }}" class="inputBox" onchange="this.form.submit()" checked>
+                        <div class="conteudoCard">
+                            <label for="tarefa-{{ tarefa.id }}" class="nomeTarefaConcluida">
+                                {{ tarefa.tarefa }}
+                            </label>
+                            <p class="descricaoTarefaConcluida">
+                                {{ tarefa.descricao }}
+                            </p>            
+                            <p class="statusTarefaConluido">
+                                Concluída
+                            </p>
+                        </div>
+                    </form>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+            <div class="semTarefas">
+                <img src="{{ url_for('static',  filename='img/check-circle-svgrepo-com (2).svg') }}" alt="" class="iconCheck">
+                <p class="msgNenhumaTarefa">Nenhuma tarefa conluída</p>
+                <p class="msgTarefas">
+                    Complete algumas tarefas para vê-las aqui
+                </p>
+            </div>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="listaTarefas">
+            {% for tarefa in tarefas %}
+                {% if tarefa.status == True %}
+                <form class="cardTarefa" method="post" action="{{ url_for('atualizar_status', id_tarefa=tarefa.id) }}">
+                    <input type="checkbox" name="feito" id="tarefa-{{ tarefa.id }}" class="inputBox" onchange="this.form.submit()"  checked>
+                    <div class="conteudoCard">
+                        <label for="tarefa-{{ tarefa.id }}" class="nomeTarefaConcluida">
+                            {{ tarefa.tarefa }}
+                        </label>
+                        <p class="descricaoTarefaConcluida">
+                            {{ tarefa.descricao }}
+                        </p>
+                        {% if tarefa.status == False %}
+                        <p class="statusTarefaPendente">
+                            Pendente
+                        </p>
+                        {% else %}
+                        <p class="statusTarefaConluido">
+                            Concluída
+                        </p>
+                        {% endif %}
+                    </div>
+                </form>
+                {% else %}
+                <form class="cardTarefa" method="post" action="{{ url_for('atualizar_status', id_tarefa=tarefa.id) }}">
+                    <input type="checkbox" name="feito" id="tarefa-{{ tarefa.id }}" class="inputBox" onchange="this.form.submit()" >
+                    <div class="conteudoCard">
+                        <label for="tarefa-{{ tarefa.id }}" class="nomeTarefa">
+                            {{ tarefa.tarefa }}
+                        </label>
+                        <p class="descricaoTarefa">
+                            {{ tarefa.descricao }}
+                        </p>
+                        {% if tarefa.status == False %}
+                        <p class="statusTarefaPendente">
+                            Pendente
+                        </p>
+                        {% else %}
+                        <p class="statusTarefaConluido">
+                            Concluída
+                        </p>
+                        {% endif %}
+                    </div>
+                </form>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </main>
+</body>
+</html>

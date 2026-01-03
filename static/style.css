@@ -1,0 +1,289 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #fcfaf8;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fcfaf9;
+    padding: 25px;
+    border-bottom: 1px solid #e7e1da;
+}
+
+.headerInterno {
+    width: 40%;
+    min-width: 320px;
+    display: flex;
+    gap: 10px;
+}
+
+.iconQuadradoVerificado {
+    width: 18px;
+    background-color: #4b9b68;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.minhasTarefas {
+    color: #2a2622
+}
+
+.infoTarefas {
+    color: #9e968c;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    min-width: 300px;
+    border: 1px solid #e7e1da;
+    border-radius: 15px;
+    background-color: #fdfdfb;
+    gap: 15px;
+}
+
+.formSuperior {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    gap: 10px;
+}
+
+input {
+    font-size: 15px;
+    border: none;
+    height: 20px;
+    padding-bottom: 20px;
+}
+
+textarea {
+    font-size: 15px;
+    padding: 5px;
+    background-color: #fcfaf8;
+    border: 1px solid #e7e1da;
+    border-radius: 15px;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 120px;
+    background-color: #4b9b68;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.formInferior {
+    display: flex;
+    justify-content: flex-end;
+    align-items: first end;
+    padding: 10px;
+    padding-right: 25px;
+    flex-direction: column;
+    border: solid;
+    background-color: #faf9f6;
+    border: 1px solid #e7e1da;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.iconMais {
+    width: 25px;
+}
+
+.abas {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    min-width: 300px;
+    gap: 10px;
+    background-color: #f6f4f2;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.aba00 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    width: 100px;
+    min-width: 60px;
+    color: #2a2622;
+}
+
+.qntTarefaTodas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #eaf2eb;
+}
+
+.aba01 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    color: #a68075;
+}
+
+.qntTarefaPendentes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #f3f0ed;
+
+}
+
+.aba02 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    color: #a68075;
+}
+
+.qntTarefaConcluidas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #f3f0ed;
+}
+
+a {
+    text-decoration: none;
+}
+
+.inputBox {
+    width: 50px;
+    border-radius: 20%;
+}
+
+.listaTarefas {
+    display: flex;
+    width: 40%;
+    min-width: 300px;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.semTarefas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.msgTarefas {
+    color: #a68075;
+}
+
+.cardTarefa {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 15px;
+    background-color: #fdfdfb;
+    border: 1px solid #e7e1da;
+    border-radius: 10px;
+    min-width: 255px;
+    width: auto;
+}
+
+.iconCirculo {
+    padding: 10px;
+    width: 35px;
+    background-color: #f6f4f2;
+    border-radius: 50px;
+}
+
+.iconCheck {
+    padding: 10px;
+    width: 35px;
+    background-color: #f6f4f2;
+    border-radius: 50px;
+}
+
+.msgNenhumaTarefa {
+    font-size: 20px;
+    color: #2a2622
+}
+
+
+.nomeTarefa {
+    color: #2a2622;
+    font-size: 20px;
+}
+
+.nomeTarefaConcluida, .descricaoTarefaConcluida, .statusTarefaConluido {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.nomeTarefaConcluida {
+    color: #2a2622;
+    font-size: 20px;
+}
+
+.descricaoTarefa {
+    color: #918a82;
+    font-size: 18px;
+}
+
+.descricaoTarefaConcluida {
+    color: #918a82;
+    font-size: 18px;
+}
+
+.statusTarefaPendente {
+    color: #e8883b;
+}
+
+.statusTarefaConluido {
+    color: #7cc596;
+    /* text-decoration: line-through; */
+}
