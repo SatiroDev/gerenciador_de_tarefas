@@ -115,6 +115,14 @@
                                 Pendente
                             </p>
                         </div>
+                        <div class="botoesCard">
+                            <a href="" class="editar">
+                                <img src="{{ url_for('static',  filename='img/pencil-svgrepo-com.svg') }}" alt="" class="iconLapis">
+                            </a>
+                            <a href="{{ url_for('excluir_tarefa', id=tarefa.id) }}" class="excluir">
+                                <img src="{{ url_for('static',  filename='img/trash-can-svgrepo-com.svg') }}" alt="" class="iconLixeira">
+                            </a>                           
+                        </div>
                     </form>
                     {% endif %}
                 {% endfor %}
@@ -146,6 +154,14 @@
                                 Concluída
                             </p>
                         </div>
+                        <div class="botoesCard">
+                            <a href="" class="editar">
+                                <img src="{{ url_for('static',  filename='img/pencil-svgrepo-com.svg') }}" alt="" class="iconLapis">
+                            </a>
+                            <a href="{{ url_for('excluir_tarefa', id=tarefa.id) }}" class="excluir">
+                                <img src="{{ url_for('static',  filename='img/trash-can-svgrepo-com.svg') }}" alt="" class="iconLixeira">
+                            </a>                           
+                        </div>
                     </form>
                     {% endif %}
                 {% endfor %}
@@ -161,51 +177,77 @@
         </div>
         {% else %}
         <div class="listaTarefas">
-            {% for tarefa in tarefas %}
-                {% if tarefa.status == True %}
-                <form class="cardTarefa" method="post" action="{{ url_for('atualizar_status', id_tarefa=tarefa.id) }}">
-                    <input type="checkbox" name="feito" id="tarefa-{{ tarefa.id }}" class="inputBox" onchange="this.form.submit()"  checked>
-                    <div class="conteudoCard">
-                        <label for="tarefa-{{ tarefa.id }}" class="nomeTarefaConcluida">
-                            {{ tarefa.tarefa }}
-                        </label>
-                        <p class="descricaoTarefaConcluida">
-                            {{ tarefa.descricao }}
-                        </p>
-                        {% if tarefa.status == False %}
-                        <p class="statusTarefaPendente">
-                            Pendente
-                        </p>
-                        {% else %}
-                        <p class="statusTarefaConluido">
-                            Concluída
-                        </p>
-                        {% endif %}
-                    </div>
-                </form>
-                {% else %}
-                <form class="cardTarefa" method="post" action="{{ url_for('atualizar_status', id_tarefa=tarefa.id) }}">
-                    <input type="checkbox" name="feito" id="tarefa-{{ tarefa.id }}" class="inputBox" onchange="this.form.submit()" >
-                    <div class="conteudoCard">
-                        <label for="tarefa-{{ tarefa.id }}" class="nomeTarefa">
-                            {{ tarefa.tarefa }}
-                        </label>
-                        <p class="descricaoTarefa">
-                            {{ tarefa.descricao }}
-                        </p>
-                        {% if tarefa.status == False %}
-                        <p class="statusTarefaPendente">
-                            Pendente
-                        </p>
-                        {% else %}
-                        <p class="statusTarefaConluido">
-                            Concluída
-                        </p>
-                        {% endif %}
-                    </div>
-                </form>
-                {% endif %}
-            {% endfor %}
+            {% if quantidade.qnt_todas > 0 %}
+                {% for tarefa in tarefas %}
+                    {% if tarefa.status == True %}
+                    <form class="cardTarefa" method="post" action="{{ url_for('atualizar_status', id_tarefa=tarefa.id) }}">
+                        <input type="checkbox" name="feito" id="tarefa-{{ tarefa.id }}" class="inputBox" onchange="this.form.submit()"  checked>
+                        <div class="conteudoCard">
+                            <label for="tarefa-{{ tarefa.id }}" class="nomeTarefaConcluida">
+                                {{ tarefa.tarefa }}
+                            </label>
+                            <p class="descricaoTarefaConcluida">
+                                {{ tarefa.descricao }}
+                            </p>
+                            {% if tarefa.status == False %}
+                            <p class="statusTarefaPendente">
+                                Pendente
+                            </p>
+                            {% else %}
+                            <p class="statusTarefaConluido">
+                                Concluída
+                            </p>
+                            {% endif %}
+                        </div>
+                        <div class="botoesCard">
+                            <a href="" class="editar">
+                                <img src="{{ url_for('static',  filename='img/pencil-svgrepo-com.svg') }}" alt="" class="iconLapis">
+                            </a>
+                            <a href="{{ url_for('excluir_tarefa', id=tarefa.id) }}" class="excluir">
+                                <img src="{{ url_for('static',  filename='img/trash-can-svgrepo-com.svg') }}" alt="" class="iconLixeira">
+                            </a>                           
+                        </div>
+                    </form>
+                    {% else %}
+                    <form class="cardTarefa" method="post" action="{{ url_for('atualizar_status', id_tarefa=tarefa.id) }}">
+                        <input type="checkbox" name="feito" id="tarefa-{{ tarefa.id }}" class="inputBox" onchange="this.form.submit()" >
+                        <div class="conteudoCard">
+                            <label for="tarefa-{{ tarefa.id }}" class="nomeTarefa">
+                                {{ tarefa.tarefa }}
+                            </label>
+                            <p class="descricaoTarefa">
+                                {{ tarefa.descricao }}
+                            </p>
+                            {% if tarefa.status == False %}
+                            <p class="statusTarefaPendente">
+                                Pendente
+                            </p>
+                            {% else %}
+                            <p class="statusTarefaConluido">
+                                Concluída
+                            </p>
+                            {% endif %}
+                        </div>
+                        <div class="botoesCard">
+                            <a href="" class="editar">
+                                <img src="{{ url_for('static',  filename='img/pencil-svgrepo-com.svg') }}" alt="" class="iconLapis">
+                            </a>
+                            <a href="{{ url_for('excluir_tarefa', id=tarefa.id) }}" class="excluir">
+                                <img src="{{ url_for('static',  filename='img/trash-can-svgrepo-com.svg') }}" alt="" class="iconLixeira">
+                            </a>                           
+                        </div>
+                    </form>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+            <div class="semTarefas">
+                <img src="{{ url_for('static',  filename='img/clipboard-list-todo-svgrepo-com.svg') }}" alt="" class="iconAgenda">
+                <p class="msgNenhumaTarefa">Nenhuma tarefa ainda</p>
+                <p class="msgTarefas">
+                    Comece adicionando sua primeira tarefa acima
+                </p>
+            </div>
+            {% endif %}
         </div>
         {% endif %}
     </main>

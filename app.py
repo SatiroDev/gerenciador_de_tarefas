@@ -1,24 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 
 tarefas = [
-    {
-        "id": 0,
-        "tarefa": "tarefa exemplo",
-        "descricao": "descrição tarefa exemplo",
-        "status": False
-    },
-    {
-        "id": 1,
-        "tarefa": "tarefa exemplo",
-        "descricao": "descrição tarefa exemplo",
-        "status": True
-    },
-     {
-        "id": 2,
-        "tarefa": "tarefa exemplo",
-        "descricao": "descrição tarefa exemplo",
-        "status": True
-    }
+    
 ]
 
 def quantidade_tarefas():
@@ -42,7 +25,6 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     quantidade = quantidade_tarefas()
-    print(tarefas)
     return render_template("index.html", tarefas=tarefas, quantidade=quantidade)
 
 @app.route("/escolha_aba/<int:id>")
@@ -62,8 +44,10 @@ def atualizar_status(id_tarefa):
 def adicionar_tarefa():
     tarefa = request.form["tarefa"]
     descricao = request.form["descricao"]
-    id = tarefas[-1]["id"] + 1
-    print(tarefa)
+    if (len(tarefas) > 0):
+        id = tarefas[-1]["id"] + 1
+    else:
+        id = 0
     tarefas.append(
         {
             "id": id,
@@ -71,6 +55,11 @@ def adicionar_tarefa():
             "descricao": descricao,
             "status": False
         })
+    return redirect(url_for('index'))
+
+@app.route("/excluir_tarefa/<int:id>")
+def excluir_tarefa(id):
+    del tarefas[id]
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
