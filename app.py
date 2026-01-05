@@ -4,6 +4,25 @@ tarefas = [
     
 ]
 
+
+def deletar_tarefa(id_tarefa):
+    for tarefa in tarefas:
+        if tarefa["id"] == id_tarefa:
+            del tarefas[id_tarefa]
+            break
+    return
+
+def atualiza_status(id_tarefa):
+    for tarefa in tarefas:
+        if tarefa["id"] == id_tarefa:
+            if (tarefa["status"] == False):
+                tarefa["status"] = True
+                break
+            else:
+                tarefa["status"] = False
+                break
+    return
+
 def quantidade_tarefas():
     qnt_tarefas_pendente = 0
     qnt_tarefas_concluida = 0
@@ -34,10 +53,7 @@ def escolha_aba(id):
 
 @app.route("/atualizar_status/<int:id_tarefa>", methods=["POST"])
 def atualizar_status(id_tarefa):
-    if (tarefas[id_tarefa]["status"] == False):
-        tarefas[id_tarefa]["status"] = True
-    else:
-        tarefas[id_tarefa]["status"] = False
+    atualiza_status(id_tarefa)
     return redirect(url_for('index'))
 
 @app.route("/adicionar_tarefa", methods=["POST"])
@@ -59,7 +75,7 @@ def adicionar_tarefa():
 
 @app.route("/excluir_tarefa/<int:id>")
 def excluir_tarefa(id):
-    del tarefas[id]
+    deletar_tarefa(id)
     return redirect(url_for('index'))
 
 if __name__ == "__main__":

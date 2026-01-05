@@ -22,18 +22,9 @@
         </div>
     </header>
     <main>
-        <form action="{{ url_for('adicionar_tarefa') }}" method="post" >
+        <form action="{{ url_for('adicionar_tarefa') }}" method="post" class="formulario">
             <div class="formSuperior">
                 <input type="text" name="tarefa" id="tarefa" placeholder="O que você precisa fazer?" required>
-                <textarea name="descricao" id="descricao" rows="5" placeholder="Adicione uma descrição (opcional)"></textarea>
-            </div>
-            <div class="formInferior">
-                <button>
-                    <img src="{{ url_for('static', filename='img/add-svgrepo-com.svg') }}" alt="" class="iconMais">
-                    <p class="adicionar">
-                        Adicionar
-                    </p>
-                </button>
             </div>
         </form>
         <div class="abas">
@@ -251,5 +242,7 @@
         </div>
         {% endif %}
     </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
