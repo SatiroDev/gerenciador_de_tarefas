@@ -1,3 +1,3 @@
 # gerenciador_de_tarefas
 
-# v 1.5
+# v 1.6
