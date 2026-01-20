@@ -28,64 +28,25 @@
             </div>
         </form>
         <div class="abas">
-            {% if id == 1 %}
-            <a href="/" class="aba01">
+            <a href="/" class="aba {{ 'ativa' if id is not defined or id == 0 else '' }}">
                 <p class="todas">
                     Todas
                 </p>
                 <p class="qntTarefaTodas">{{ quantidade.qnt_todas }}</p>
             </a>
-            <a href="{{ url_for('escolha_aba', id=1) }}" class="aba00">
+            <a href="{{ url_for('escolha_aba', id=1) }}" class="aba {{ 'ativa' if id == 1 else '' }}">
                 <p class="pendentes">
                     Pendentes
                 </p>
                 <p class="qntTarefaPendentes">{{ quantidade.qnt_pendentes }}</p>
             </a>
-            <a href="{{ url_for('escolha_aba', id=2) }}" class="aba02">
+            <a href="{{ url_for('escolha_aba', id=2) }}" class="aba {{ 'ativa' if id == 2 else '' }}">
                 <p class="concluidas">
                     Concluídas
                 </p>
                 <p class="qntTarefaConcluidas">{{ quantidade.qnt_concluidas }}</p>
             </a>
-            {% elif id == 2 %}
-            <a href="/" class="aba01">
-                <p class="todas">
-                    Todas
-                </p>
-                <p class="qntTarefaTodas">{{ quantidade.qnt_todas }}</p>
-            </a>
-            <a href="{{ url_for('escolha_aba', id=1) }}" class="aba02">
-                <p class="pendentes">
-                    Pendentes
-                </p>
-                <p class="qntTarefaPendentes">{{ quantidade.qnt_pendentes }}</p>
-            </a>
-            <a href="{{ url_for('escolha_aba', id=2) }}" class="aba00">
-                <p class="concluidas">
-                    Concluídas
-                </p>
-                <p class="qntTarefaConcluidas">{{ quantidade.qnt_concluidas }}</p>
-            </a>
-            {% else %} 
-            <a href="/" class="aba00">
-                <p class="todas">
-                    Todas
-                </p>
-                <p class="qntTarefaTodas">{{ quantidade.qnt_todas }}</p>
-            </a>
-            <a href="{{ url_for('escolha_aba', id=1) }}" class="aba01">
-                <p class="pendentes">
-                    Pendentes
-                </p>
-                <p class="qntTarefaPendentes">{{ quantidade.qnt_pendentes }}</p>
-            </a>
-            <a href="{{ url_for('escolha_aba', id=2) }}" class="aba02">
-                <p class="concluidas">
-                    Concluídas
-                </p>
-                <p class="qntTarefaConcluidas">{{ quantidade.qnt_concluidas }}</p>
-            </a>
-            {% endif %}
+
         </div>
 
         {% if id == 1 %}

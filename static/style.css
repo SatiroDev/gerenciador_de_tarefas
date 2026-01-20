@@ -75,7 +75,12 @@ input {
     font-size: 15px;
     border: none;
     height: 20px;
-    padding-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px 10px;
+}
+
+input:focus {
+    outline: 1px solid #b4b4b4;
 }
 
 .inputBox {
@@ -84,10 +89,15 @@ input {
 
 textarea {
     font-size: 15px;
-    padding: 5px;
+    padding: 10px 10px;
     background-color: #fcfaf8;
     border: 1px solid #e7e1da;
     border-radius: 15px;
+    resize: none; 
+}
+
+textarea:focus {
+    outline: 1px solid #b4b4b4;
 }
 
 button {
@@ -114,6 +124,7 @@ button {
     background-color: #faf9f6;
     border: 1px solid #e7e1da;
     border-radius: 0px 0px 10px 10px;
+    /* transition: 1s ease; */
 }
 
 .iconMais {
@@ -131,7 +142,18 @@ button {
     padding: 5px;
 }
 
-.aba00 {
+.aba {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    color: #a68075;
+    width: 75px;
+    transition: 0.5s ease;
+}
+
+.aba.ativa {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -152,22 +174,10 @@ button {
     width: 20px;
     height: 20px;
     border-radius: 20px;
-    background-color: #eaf2eb;
+    background-color: #f3f0ed;
 }
 
-.aba01 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    padding: 10px;
-    color: #a68075;
-    width: 75px;
-    transition: 0.5s ease;
-
-}
-
-.aba01:hover {
+.aba:hover {
     color: black;
     transition: 0.5s ease;
 }
@@ -185,21 +195,6 @@ button {
 
 }
 
-.aba02 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    padding: 10px;
-    color: #a68075;
-    width: 75px;
-    transition: 0.5s ease;
-}
-
-.aba02:hover {
-    color: black;
-    transition: 0.5s ease;
-}
 
 
 .qntTarefaConcluidas {

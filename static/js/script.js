@@ -38,3 +38,17 @@ inputTarefa.addEventListener("click", () => {
 
     formulario.append(formularioInferior)
 })
+
+// salva posição antes de sair
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("scrollY", window.scrollY);
+});
+
+// restaura ao carregar
+window.addEventListener("load", () => {
+  const scrollY = localStorage.getItem("scrollY");
+  if (scrollY !== null) {
+    window.scrollTo(0, parseInt(scrollY));
+    localStorage.removeItem("scrollY");
+  }
+});
